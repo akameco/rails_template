@@ -1,9 +1,11 @@
 txt = <<-TXT
-
-      ＿人人人人人人人人人人人人人人人＿
-      ＞　Rails Application Templates　＜
-      ￣Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^YY^Y￣
-
+             ＿
+        〃:::::::｀ヽ
+       |ｉ::iノ}八ﾊ
+       |i:(|.ﾟ -ﾟﾉi|
+       |i:ﾘ)づとﾘ >> Rails Application Templates
+         く/_j｣>
+           し'ﾉ
 TXT
 puts txt
 
@@ -18,4 +20,14 @@ run 'touch README.md'
 run 'gibo Ruby Vim JetBrains Linux > .gitignore'
 
 # gem
-# gem 'rspec'
+gem_group :development, :test do
+  # rspec
+  gem 'rspec-rails'
+end
+
+# bundle install
+run 'run bundle install'
+
+# rspec
+generate 'rspec:install'
+run "echo '--color --require rails_helper' > .rspec"
