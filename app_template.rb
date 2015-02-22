@@ -24,6 +24,9 @@ run 'echo .envrc >> .gitignore'
 
 comment_lines 'Gemfile', "gem 'sqlite3'"
 
+# slim
+gem 'slim-rails'
+
 gem_group :development, :test do
   gem 'sqlite3'
   # rspec
@@ -42,6 +45,12 @@ gem_group :development, :test do
   # PryでのSQLの結果を綺麗に表示
   gem 'hirb'
   gem 'hirb-unicode'
+end
+
+gem_group :development do
+  gem 'html2slim'
+  # N+1問題の検出
+  gem 'bullet'
 end
 
 gem_group :production do
@@ -67,3 +76,6 @@ run 'spring status'
 
 # guard
 run 'guard init'
+
+# erb => slim
+run 'bundle exec erb2slim -d app/views'
