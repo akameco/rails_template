@@ -21,11 +21,14 @@ run 'gibo Ruby Vim JetBrains Linux > .gitignore'
 run 'echo .envrc >> .gitignore'
 
 # gem
-
 comment_lines 'Gemfile', "gem 'sqlite3'"
 
 # slim
 gem 'slim-rails'
+
+# server
+gem 'puma'
+gem 'foreman'
 
 gem_group :development, :test do
   gem 'sqlite3'
@@ -79,3 +82,6 @@ run 'guard init'
 
 # erb => slim
 run 'bundle exec erb2slim -d app/views'
+
+# foreman
+run "echo 'web: bundle exec puma -t ${PUMA_MIN_THREADS:-8}:${PUMA_MAX_THREADS:-12} -w ${PUMA_WORKERS:-2} -p $PORT -e ${RACK_ENV:-development}' > Procfile"
