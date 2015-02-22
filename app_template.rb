@@ -24,19 +24,21 @@ gem_group :development, :test do
   # rspec
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
+  gem 'capybara'
+  gem 'shoulda-matchers', require: false
 end
 
 # bundle install
 run 'run bundle install'
 
-# spring
-run 'bundle exec spring binstub --all'
-
-# rspec
-generate 'rspec:install'
-run "echo '--color --require rails_helper' > .rspec"
-run 'spring binstub rspec'
-
 # direnv
 run "echo 'export PATH=$PWD/bin:$PATH' > .envrc"
 run 'direnv allow .'
+
+# rspec
+generate 'rspec:install'
+# run "echo '--color --require rails_helper' > .rspec"
+
+# spring
+run 'spring binstub --all'
+run 'spring binstub rspec'
