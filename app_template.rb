@@ -18,20 +18,39 @@ run 'touch README.md'
 
 # gitignore
 run 'gibo Ruby Vim JetBrains Linux > .gitignore'
+run 'echo .envrc >> .gitignore'
 
 # gem
+
+comment_lines 'Gemfile', "gem 'sqlite3'"
+
 gem_group :development, :test do
+  gem 'sqlite3'
   # rspec
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'capybara'
   gem 'shoulda-matchers', require: false
+
   # guard
   gem 'guard-rspec', require: false
+
+  # pry
+  gem 'pry-rails'
+  gem 'awesome_print'
+
+  # PryでのSQLの結果を綺麗に表示
+  gem 'hirb'
+  gem 'hirb-unicode'
+end
+
+gem_group :production do
+  gem 'rails_12factor'
+  gem 'pg'
 end
 
 # bundle install
-run 'run bundle install'
+run 'bundle install --without production'
 
 # direnv
 run "echo 'export PATH=$PWD/bin:$PATH' > .envrc"
