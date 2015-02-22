@@ -31,3 +31,7 @@ run 'run bundle install'
 # rspec
 generate 'rspec:install'
 run "echo '--color --require rails_helper' > .rspec"
+
+# direnv
+run "echo 'export PATH=$PWD/bin:$PATH' > .envrc"
+run 'direnv allow .'
