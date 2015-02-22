@@ -23,14 +23,19 @@ run 'gibo Ruby Vim JetBrains Linux > .gitignore'
 gem_group :development, :test do
   # rspec
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
 end
 
 # bundle install
 run 'run bundle install'
 
+# spring
+run 'bundle exec spring binstub --all'
+
 # rspec
 generate 'rspec:install'
 run "echo '--color --require rails_helper' > .rspec"
+run 'spring binstub rspec'
 
 # direnv
 run "echo 'export PATH=$PWD/bin:$PATH' > .envrc"
