@@ -30,6 +30,11 @@ gem 'slim-rails'
 gem 'puma'
 gem 'foreman'
 
+# bootstrap
+gem 'bootstrap-sass'
+gem 'bootswatch-rails'
+gem 'font-awesome-rails'
+
 gem_group :development, :test do
   gem 'sqlite3'
   # rspec
@@ -82,6 +87,10 @@ run 'guard init'
 
 # erb => slim
 run 'bundle exec erb2slim -d app/views'
+
+# Bootstrap/Bootswach/Font-Awesome
+run 'rm -rf app/assets/stylesheets/application.css'
+# run 'wget https://raw.github.com/akameco/rails_template/master/app/assets/stylesheets/application.scss -P app/assets/stylesheets/'
 
 # foreman
 run "echo 'web: bundle exec puma -t ${PUMA_MIN_THREADS:-8}:${PUMA_MAX_THREADS:-12} -w ${PUMA_WORKERS:-2} -p $PORT -e ${RACK_ENV:-development}' > Procfile"
