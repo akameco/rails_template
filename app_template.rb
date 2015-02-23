@@ -61,6 +61,11 @@ gem_group :development do
   gem 'bullet'
 end
 
+gem_group :test do
+  # test fixture
+  gem 'factory_girl_rails'
+end
+
 gem_group :production do
   gem 'rails_12factor'
   gem 'pg'
@@ -100,3 +105,15 @@ run 'wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml
 
 # set pryrc
 run 'wget https://raw.githubusercontent.com/akameco/rails_template/master/.pryrc'
+
+# factory_girl
+insert_into_file 'spec/rails_helper.rb', %(
+  config.before :all do
+    FactoryGirl.reload
+    FactoryGirl.factories.clear
+    FactoryGirl.sequences.clear
+    FactoryGirl.find_definitions
+  end
+
+  config.include FactoryGirl::Syntax::Methods
+), after: 'RSpec.configure do |config|'
