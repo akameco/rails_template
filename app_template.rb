@@ -106,8 +106,7 @@ run 'wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml
 # set pryrc
 run 'wget https://raw.githubusercontent.com/akameco/rails_template/master/.pryrc'
 
-# factory_girl
-insert_into_file 'spec/rails_helper.rb', %(
+# factory_girl insert_into_file 'spec/rails_helper.rb', %(
   config.before :all do
     FactoryGirl.reload
     FactoryGirl.factories.clear
@@ -117,3 +116,31 @@ insert_into_file 'spec/rails_helper.rb', %(
 
   config.include FactoryGirl::Syntax::Methods
 ), after: 'RSpec.configure do |config|'
+
+# config/application.rb
+application do
+  %q{
+    # タイムゾーン
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local 
+
+    # 日本語化
+    I18n.enforce_available_locales = true
+    config.i18n.default_locale = :ja
+
+    # generatorの設定
+    config.generators do |g|
+      g.test_framework :rspec, :fixture => true
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+      g.view_specs false
+      g.controller_specs true
+      g.routing_specs false
+      g.helper_specs false
+      g.request_specs false
+      g.helper false
+    end
+
+    # lib/autoload 以下を自動読み込み
+    config.autoload_paths += %W(#{config.root}/lib/autoload)
+  }
+end
