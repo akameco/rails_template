@@ -106,7 +106,8 @@ run 'wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml
 # set pryrc
 run 'wget https://raw.githubusercontent.com/akameco/rails_template/master/.pryrc'
 
-# factory_girl insert_into_file 'spec/rails_helper.rb', %(
+# factory_girl
+insert_into_file 'spec/rails_helper.rb', %(
   config.before :all do
     FactoryGirl.reload
     FactoryGirl.factories.clear
@@ -144,3 +145,8 @@ application do
     config.autoload_paths += %W(#{config.root}/lib/autoload)
   }
 end
+
+# git init
+git :init
+git :add => '.'
+git :commit => "-a -m 'first commit'"
