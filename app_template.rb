@@ -1,14 +1,3 @@
-txt = <<-TXT
-             ＿
-        〃:::::::｀ヽ
-       |ｉ::iノ}八ﾊ
-       |i:(|.ﾟ -ﾟﾉi|
-       |i:ﾘ)づとﾘ >> Rails Application Templates
-         く/_j｣>
-           し'ﾉ
-TXT
-puts txt
-
 # アプリ名の取得
 @app_name = app_name
 
@@ -81,6 +70,7 @@ run 'direnv allow .'
 # rspec
 run 'rails g rspec:install'
 # run "echo '--color --require rails_helper' > .rspec"
+run 'mkdir spec/features'
 
 # spring
 run 'spring binstub --all'
@@ -152,3 +142,15 @@ end
 git :init
 git :add => '.'
 git :commit => "-a -m 'first commit'"
+
+txt = <<-TXT
+             ＿
+        〃:::::::｀ヽ
+       |ｉ::iノ}八ﾊ
+       |i:(|.ﾟ -ﾟﾉi|
+       |i:ﾘ)づとﾘ >> #{@app_name}の開発頑張ってね!!!
+         く/_j｣>
+           し'ﾉ
+TXT
+puts txt
+
