@@ -6,7 +6,7 @@ run 'rm README.rdoc'
 run 'touch README.md'
 
 # gitignore
-run 'gibo Ruby Vim JetBrains Linux > .gitignore'
+run 'gibo Ruby Rails Vim JetBrains Linux > .gitignore'
 run 'echo .envrc >> .gitignore'
 
 # gem
