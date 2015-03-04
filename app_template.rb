@@ -42,6 +42,9 @@ gem_group :development, :test do
   # PryでのSQLの結果を綺麗に表示
   gem 'hirb'
   gem 'hirb-unicode'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 gem_group :development do
